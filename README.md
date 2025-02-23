@@ -6,8 +6,8 @@ Am Ende dieser Challenge wird der Schüler in der Lage sein, einen einfachen deu
 ## Challenge
 
 
-## Deutsch A1 Lesetext & Verständnisfragen für chinesische Erwachsene
-
+## Deutsch A1 Lesetext \& Verständnisfragen für chinesische Erwachsene
+ 
 
 ### Description
 
