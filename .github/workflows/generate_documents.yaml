@@ -156,9 +156,8 @@ jobs:
           asset_name: ${{ env.REPO_PDF_NAME }}
           asset_content_type: application/pdf
 
-
   release-html:
-    name: Release HTML to gh-pages
+    name: Release HTML to master
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -173,7 +172,7 @@ jobs:
           name: generated-files
           path: .
 
-      - name: Prepare gh-pages branch and Push HTML
+      - name: Prepare master branch and Push HTML
         run: |
           if [ -f challenge.html ]; then
             mv challenge.html index.html
@@ -185,15 +184,14 @@ jobs:
           # Bereinige untracked Dateien, um Konflikte zu vermeiden
           git clean -fd
 
-          # Hole den gh-pages Branch; falls nicht vorhanden, als orphan Branch erstellen
-          git fetch origin gh-pages || true
-          git checkout gh-pages || git checkout --orphan gh-pages
+          # Sicherstellen, dass wir auf dem master Branch sind
+          git checkout master
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git add index.html
-          git commit -m "Update gh-pages index.html from challenge.html" || echo "No changes to commit."
+          git commit -m "Update master index.html from challenge.html" || echo "No changes to commit."
           
-          # Force-Push, um den Remote-Branch zu aktualisieren
-          git push origin HEAD:gh-pages --force
+          # Push changes to the master branch
+          git push origin master
