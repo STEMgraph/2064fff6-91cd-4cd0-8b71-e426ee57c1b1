@@ -192,11 +192,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+          git commit -m "Update master index.html from challenge.html" || echo "No changes to commit."
+
           # Hole die neuesten Änderungen vom Remote-Master und rebase deine lokalen Änderungen darauf
           git pull --rebase origin master
-
-          git add index.html
-          git commit -m "Update master index.html from challenge.html" || echo "No changes to commit."
 
           # Push changes to the master branch
           git push origin master
